@@ -39,6 +39,18 @@ app.get("/", function (req, res) {
     res.sendFile(fullPathFromDist("index.html"));
 });
 
-app.get("/api", function (req, res) {});
+/* pass tests */
+app.get("/api/whoami", function (req, res) {
+    const { ip, headers } = req;
+    const ua = headers["user-agent"];
+    const langs = headers["accept-language"];
+    /* send this */
+    const json = {
+        ipaddress: ip,
+        language: langs,
+        software: ua,
+    };
+    res.json(json);
+});
 
 app.listen(port, () => console.log(`--- server is listening on ${port}`));
