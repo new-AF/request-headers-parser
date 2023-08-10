@@ -7,17 +7,26 @@ S module, which may not support all module.exports as named exports.
 import * as toolkitRaw from "@reduxjs/toolkit";
 const { createSlice, createAsyncThunk } = toolkitRaw.default ?? toolkitRaw;
 
-/* joins server URL and PORT with e.g. /api/whoami */
+/* join server URL (and Optional PORT) with e.g. http//:localhost:3000/api/whoami */
 export function joinURL(...add) {
-    /* remove leading and trailing "/" */
-    const array = add.map((str) =>
-        str.replace(/^\/+/g, "").replace(/\/+$/g, "")
-    );
-    const str = array.join("/");
-    /*  server URL and PORT */
-    const res = `${import.meta.env.VITE_MY_SERVER_URL_WITH_PORT}/${str}`;
+    const removeLeading = /^\/+/g;
+    const removeTrailing = /\/+$/g;
 
-    return res;
+    /*  server URL (and Optional PORT) */
+    const serverOriginal = import.meta.env.VITE_MY_SERVER_URL_WITH_PORT;
+
+    /* remove Server trailing "/" */
+    const server = serverOriginal.replace(removeTrailing, "");
+
+    /* remove User leading and trailing "/" */
+    const array = add.map((str) =>
+        str.replace(removeLeading, "").replace(removeTrailing, "")
+    );
+    const user = array.join("/");
+
+    const url = `${server}/${user}`;
+
+    return url;
 }
 
 const apiURL = "/api/whoami";
