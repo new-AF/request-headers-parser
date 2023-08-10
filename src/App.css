@@ -1,0 +1,63 @@
+:root {
+    --monospace: "Lucida Console", "Consoloas", monospace;
+    --sans-serif: Calibri, "Segoe UI", Tahoma, Verdana, Arial, sans-serif;
+    --font-size-header: clamp(1.5rem, 1rem + 1vw, 3rem);
+    --font-size-main: clamp(1rem, 1rem + 1vw, 2rem);
+    --font-size-footer: clamp(0.75rem, 1rem + 1vw, 1rem);
+    --bg: honeydew;
+    --transition: linear 100ms;
+    --zero: 0;
+}
+.global-CENTER {
+    text-align: center;
+}
+.global-LIST {
+    list-style-position: inside;
+    padding: var(--zero);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+#root {
+    font-family: var(--sans-serif);
+    background-color: var(--bg);
+    min-height: 100vh;
+
+    display: grid;
+    justify-content: center;
+}
+.Header {
+    font-size: inherit;
+    text-align: center;
+    padding-block: 0.5em;
+}
+.Footer {
+    text-align: center;
+}
+.TextInput {
+    width: 100%;
+    padding: 0.5em;
+}
+.TextInput {
+    border-radius: var(--zero);
+    border: medium solid wheat;
+}
+.TextInput:focus {
+    outline: none;
+    border-color: black;
+}
+.Window {
+    font-size: var(--font-size-main);
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.5em 0 lightblue;
+}
+/* ------------- bigger elements ------------- */
+#root > .Header:first-child {
+    font-size: var(--font-size-header);
+}
+.Response > .Header:first-child {
+    border-bottom: medium solid lightgray;
+}
+.Request {
+}
