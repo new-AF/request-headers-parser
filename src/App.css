@@ -26,6 +26,7 @@
 
     display: grid;
     justify-content: center;
+    row-gap: 2rem;
 }
 .Header {
     font-size: inherit;
@@ -40,28 +41,62 @@
 }
 .TextInput {
     width: 100%;
-    padding: 0.5em;
-}
-.TextInput {
+    padding: 1em;
     font-family: var(--monospace);
     border-radius: var(--zero);
     border: medium solid wheat;
+    text-align: center;
 }
 .TextInput:focus {
     outline: none;
     border-color: black;
 }
+.TextInput:disabled {
+    border-color: gray;
+}
+.Button {
+    cursor: pointer;
+    width: 100%;
+    padding-block: 1em;
+    font-weight: bold;
+    border: medium solid;
+    background-color: transparent;
+    transition: background-color var(--transition);
+}
+.Button:hover {
+    background-color: lemonchiffon;
+}
 .Window {
     font-size: var(--font-size-main);
     border-radius: 0.5em;
     box-shadow: 0 0 0.5em 0 lightblue;
+    overflow: hidden;
 }
-/* ------------- bigger elements ------------- */
+/* ------------- APP h1 ------------- */
 #root > .Header:first-child {
     font-size: var(--font-size-header);
 }
+/* ------------- Request ------------- */
+.Request > * {
+    font-size: 0.75em;
+}
+.Request > .Header:first-child {
+    font-size: 1em;
+}
+.Request > .Button {
+    border: none;
+}
+/* ------------- Response ------------- */
+.Response > * {
+    font-size: 0.75em;
+}
 .Response > .Header:first-child {
+    font-size: 1em;
     border-bottom: medium solid lightgray;
 }
-.Request {
+.Response > .json-container {
+    white-space: pre-wrap;
+    font-family: var(--monospace);
+    padding-inline: 1em;
+    line-height: 2;
 }

@@ -17,6 +17,9 @@ dependencies:
   nodemon:
     specifier: ^3.0.1
     version: 3.0.1
+  pretty-print-json:
+    specifier: ^2.0.2
+    version: 2.0.2
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -2108,6 +2111,10 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
     dev: true
+
+  /pretty-print-json@2.0.2:
+    resolution: {integrity: sha512-63lV7Sq1x9Tr0ipYgcoItVBTvGbAcYYoYtOnE1L81CIAt35L8WPQR4K4LPw/8onijkgbd8CTD+4ZCJzIGRVh1Q==}
+    dev: false
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}

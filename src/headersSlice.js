@@ -23,11 +23,13 @@ export function joinURL(...add) {
 const apiURL = "/api/whoami";
 const initialState = {
     input: apiURL,
-    output: "-",
+    json: JSON.stringify("-"),
 };
 
 const callServer = createAsyncThunk("headers/callServer", async () => {
-    const res = await fetch(joinURL(apiURL));
+    const url = joinURL(apiURL);
+    console.log("--- calling", url);
+    const res = await fetch(url);
     const json = res.json();
     return json;
 });
@@ -39,8 +41,9 @@ const slice = createSlice({
     /* setJSON */
     extraReducers: (builder) => {
         builder.addCase(callServer.fulfilled, (state, action) => {
-            const json = action.payload;
-            state.output = json;
+            const JSONObject = action.payload;
+            // console.log("--- response", JSONObject, typeof JSONObject);
+            state.json = JSON.stringify(JSONObject);
         });
     },
 });

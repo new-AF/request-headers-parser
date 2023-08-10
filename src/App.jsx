@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { callServer } from "./headersSlice";
+import { prettyPrintJson } from "pretty-print-json";
+
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -52,6 +54,19 @@ function Link({ href, text }) {
         </a>
     );
 }
+function Button({ additionalClassName, text, onClick }) {
+    const className = joinClassNames(additionalClassName, "Button");
+    return (
+        <button className={className} onClick={onClick}>
+            {text}
+        </button>
+    );
+}
+
+function Text({ additionalClassName, text }) {
+    const className = joinClassNames(additionalClassName, "Text");
+    return <div className={className}>{text}</div>;
+}
 function Window({ additionalClassName, headerText, children }) {
     const className = joinClassNames(additionalClassName, "Window");
     return (
@@ -61,30 +76,41 @@ function Window({ additionalClassName, headerText, children }) {
         </section>
     );
 }
-/* ------------- bigger elements ------------- */
+/* ------------- Request ------------- */
 function Request({ additionalClassName, input }) {
+    const dispath = useDispatch();
+    function onClick(event) {
+        dispath(callServer());
+    }
     return (
         <Window additionalClassName={"Request"} headerText={"Request"}>
             <TextInput defaultValue={input} disabled={true}></TextInput>
+            <Button text={"Send Request"} onClick={onClick}></Button>
         </Window>
     );
 }
-function Response({ additionalClassName }) {
+/* ------------- Response ------------- */
+function Response({ additionalClassName, output: json }) {
     return (
-        <Window
-            additionalClassName={"Response"}
-            headerText={"Response"}
-        ></Window>
+        <Window additionalClassName={"Response"} headerText={"Response"}>
+            <pre
+                className="json-container"
+                dangerouslySetInnerHTML={{
+                    __html: prettyPrintJson.toHtml(JSON.parse(json)),
+                }}
+            ></pre>
+        </Window>
     );
 }
+/* ------------- APP ------------- */
 function App() {
-    const dispath = useDispatch();
     const state = useSelector((state) => state.headers);
     return (
         <>
             <Header number={1} text={"Request Header Parser"}></Header>
             <Request input={state.input}></Request>
-            <Response></Response>
+            {/* state.json is a string */}
+            <Response output={state.json}></Response>
             <Footer>
                 by{" "}
                 <Link
