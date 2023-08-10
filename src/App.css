@@ -100,3 +100,9 @@
     padding-inline: 1em;
     line-height: 2;
 }
+/* tablet width and larger */
+@media screen and (min-width: 768px) {
+    #root {
+        grid-template-columns: 60%;
+    }
+}

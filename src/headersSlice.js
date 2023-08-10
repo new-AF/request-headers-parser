@@ -21,13 +21,13 @@ export function joinURL(...add) {
 }
 
 const apiURL = "/api/whoami";
+const url = joinURL(apiURL);
 const initialState = {
-    input: apiURL,
-    json: JSON.stringify("-"),
+    input: url,
+    json: JSON.stringify(""),
 };
 
 const callServer = createAsyncThunk("headers/callServer", async () => {
-    const url = joinURL(apiURL);
     console.log("--- calling", url);
     const res = await fetch(url);
     const json = res.json();
