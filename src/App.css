@@ -43,6 +43,7 @@
     padding: 0.5em;
 }
 .TextInput {
+    font-family: var(--monospace);
     border-radius: var(--zero);
     border: medium solid wheat;
 }

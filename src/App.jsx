@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { callServer } from "./headersSlice";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -23,7 +25,7 @@ function Footer({ text, children }) {
         </footer>
     );
 }
-function TextInput({ value, onChange, onEnterKey }) {
+function TextInput({ value, onChange, onEnterKey, defaultValue, disabled }) {
     const className = "TextInput";
     function onKeyDown(event) {
         const { key } = event;
@@ -35,6 +37,8 @@ function TextInput({ value, onChange, onEnterKey }) {
         <input
             className={className}
             value={value}
+            defaultValue={defaultValue}
+            disabled={disabled}
             onChange={onChange}
             onKeyDown={onKeyDown}
         ></input>
@@ -58,10 +62,10 @@ function Window({ additionalClassName, headerText, children }) {
     );
 }
 /* ------------- bigger elements ------------- */
-function Request({ additionalClassName }) {
+function Request({ additionalClassName, input }) {
     return (
         <Window additionalClassName={"Request"} headerText={"Request"}>
-            <TextInput></TextInput>
+            <TextInput defaultValue={input} disabled={true}></TextInput>
         </Window>
     );
 }
@@ -74,10 +78,12 @@ function Response({ additionalClassName }) {
     );
 }
 function App() {
+    const dispath = useDispatch();
+    const state = useSelector((state) => state.headers);
     return (
         <>
             <Header number={1} text={"Request Header Parser"}></Header>
-            <Request></Request>
+            <Request input={state.input}></Request>
             <Response></Response>
             <Footer>
                 by{" "}

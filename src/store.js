@@ -1,10 +1,12 @@
 import * as toolkitRaw from "@reduxjs/toolkit";
 const { configureStore } = toolkitRaw.default ?? toolkitRaw;
 
-// import timeReducer from "./timeSlice.js";
+import reducer from "./headersSlice.js";
 
 const store = configureStore({
-    reducer: {},
+    reducer: {
+        headers: reducer,
+    },
 });
 
 export default store;
