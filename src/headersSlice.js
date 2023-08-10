@@ -33,7 +33,7 @@ const apiURL = "/api/whoami";
 const url = joinURL(apiURL);
 const initialState = {
     input: url,
-    json: JSON.stringify(""),
+    json: "" /* JSON.stringify() */,
 };
 
 const callServer = createAsyncThunk("headers/callServer", async () => {

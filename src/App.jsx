@@ -36,14 +36,14 @@ function TextInput({ value, onChange, onEnterKey, defaultValue, disabled }) {
         }
     }
     return (
-        <input
+        <textarea
             className={className}
             value={value}
             defaultValue={defaultValue}
             disabled={disabled}
             onChange={onChange}
             onKeyDown={onKeyDown}
-        ></input>
+        ></textarea>
     );
 }
 function Link({ href, text }) {
@@ -96,7 +96,13 @@ function Response({ additionalClassName, output: json }) {
             <pre
                 className="json-container"
                 dangerouslySetInnerHTML={{
-                    __html: prettyPrintJson.toHtml(JSON.parse(json)),
+                    __html:
+                        json === ""
+                            ? undefined
+                            : prettyPrintJson.toHtml(JSON.parse(json), {
+                                  lineNumbers: true,
+                                  indent: 4,
+                              }),
                 }}
             ></pre>
         </Window>

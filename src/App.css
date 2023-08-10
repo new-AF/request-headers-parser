@@ -25,6 +25,7 @@
     min-height: 100vh;
 
     display: grid;
+    grid-template-columns: 1fr;
     justify-content: center;
     row-gap: 2rem;
 }
@@ -71,6 +72,7 @@
     border-radius: 0.5em;
     box-shadow: 0 0 0.5em 0 lightskyblue;
     overflow: hidden;
+    display: grid;
 }
 /* ------------- APP h1 ------------- */
 #root > .Header:first-child {
@@ -86,6 +88,12 @@
 .Request > .Button {
     border: none;
 }
+.Request > .TextInput {
+    /* force horizonal only scroll */
+    white-space: nowrap;
+    resize: none;
+    overflow-x: scroll;
+}
 /* ------------- Response ------------- */
 .Response > * {
     font-size: 0.75em;
@@ -95,10 +103,9 @@
     border-bottom: medium solid lightgray;
 }
 .Response > .json-container {
-    white-space: pre-wrap;
+    white-space: pre-line;
     font-family: var(--monospace);
     padding-inline: 1em;
-    line-height: 2;
 }
 /* tablet width and larger */
 @media screen and (min-width: 768px) {
