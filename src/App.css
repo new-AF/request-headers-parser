@@ -30,10 +30,13 @@
 .Header {
     font-size: inherit;
     text-align: center;
+    align-self: center;
     padding-block: 0.5em;
 }
 .Footer {
+    font-size: var(--font-size-footer);
     text-align: center;
+    align-self: center;
 }
 .TextInput {
     width: 100%;
